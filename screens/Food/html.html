@@ -1,0 +1,82 @@
+<View className="w-[98vw] mx-auto mt-3">
+    <View className=" w-[98vw] h-[180px] bg-gray-200 rounded-lg ">
+        <View className="flex-row justify-between w-[98vw] mt-1 ml-[-5px]">
+            {/* calories */}
+            <View className="flex-row">
+                <Image source={icons.calories} className="w-[50px] h-[50px]" />
+                <Text className="text-black mt-3">78 calories</Text>
+            </View>
+            {/* love */}
+            <View>
+                <Image source={icons.love} className="h-[30px] w-[30px]" style={{ tintColor: food.isFavourite ?
+                    COLORS.red : COLORS.gray2, }} />
+            </View>
+        </View>
+        <View className="w-[98vw] mt-[-10px]">
+            <Image source={{uri: food.image}} className="w-[100%] h-[180px] " resizeMode="contain" />
+        </View>
+    </View>
+
+    {/* fooddescription */}
+    <View className="w-[98vw] mt-8">
+        <Text className="text-black font-bold text-[25px]">
+            {food.name}
+        </Text>
+        <Text className="text-black text mx-1 mt-2">
+            {food.richDescription}
+        </Text>
+    </View>
+
+    {/* rating & shipping & derivery */}
+    <View className="flex-row justify-between mx-2">
+        {/* rating */}
+        <IconLabel label="4.5" icon={icons.star} iconStyle={{ tintColor: COLORS.white, width: 20, height: 20,
+            marginRight: 5, }} containerStyle={{ flexDirection: 'row' , backgroundColor: COLORS.orange, borderRadius: 8,
+            padding: 8, width: 70, }} />
+        {/* time */}
+        <IconLabel label="30 min" icon={icons.clock} iconStyle={{ tintColor: COLORS.black, width: 20, height: 20,
+            marginRight: 5, }} containerStyle={{ flexDirection: 'row' , backgroundColor: COLORS.gray3, borderRadius: 8,
+            padding: 8, width: 90, }} />
+        {/* derivery */}
+        <IconLabel label="Free derivery" icon={icons.dollar} iconStyle={{ tintColor: COLORS.black, width: 20, height:
+            20, marginRight: 5, }} containerStyle={{ flexDirection: 'row' , backgroundColor: COLORS.lightOrange3,
+            borderRadius: 8, padding: 8, width: 120, }} />
+    </View>
+    {/* sizes */}
+    <View className="mt-10 mx-2 flex-row gap-x-4">
+        <Text
+            className="text-black font-bold text-[22px] relative left-8 top-0 rounded-md border-green-300 border h-[40px] p-2  text-center ">
+            Sizes
+        </Text>
+        <View className="relative left-[50px] flex-row">
+            {dummyData.sizes.map((item, index) => (
+            <TextButton label={item.label} key={item.id} buttonContainerStyle={{ padding: 13, marginHorizontal: 10,
+                borderRadius: 8, backgroundColor: selectedSize==item.id ? COLORS.primary : COLORS.null, borderColor:
+                selectedSize==item.id ? COLORS.primary : COLORS.lightOrange, borderWidth: 1, }} labelStyle={{ color:
+                selectedSize==item.id ? COLORS.white : COLORS.black, fontSize: selectedSize==item.id ? 16 : 13,
+                fontWeight: selectedSize==item.id ? '900' : '400' , }} onPress={()=> setSelectedSize(item.id)}
+                />
+                ))}
+        </View>
+    </View>
+    {/* details profile */}
+    <View className="mt-5">
+        <CustomLineDivider className="mt-3" />
+        <View className="mt-5 flex-row justify-between w-screen items-center px-4 ">
+            <View className="flex-row gap-x-2 items-center">
+                <Image source={dummyData.myProfile.profile_image} className="w-[50px] h-[50px] rounded-lg"
+                    resizeMode="contain" />
+                <View>
+                    <Text className="text-black ">
+                        {dummyData.myProfile.name}
+                    </Text>
+                    <Text className="text-black ">1.5 km from you</Text>
+                </View>
+            </View>
+            <View>
+                <RatingComponent rating={4} />
+            </View>
+        </View>
+        <CustomLineDivider />
+    </View>
+</View>
